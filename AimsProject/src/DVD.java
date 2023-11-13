@@ -9,12 +9,20 @@ public class DVD {
 		this.director = director;
 		this.length = length;
 		this.cost = cost;
+		this.id =  nbDigitalVideoDiscs++;
 	}
 	public DVD(String title, String category, float cost) {
 		super();
 		this.title = title;
 		this.category = category;
 		this.cost = cost;
+		this.id =  nbDigitalVideoDiscs++;
+	}
+	public DVD(String title)
+	{
+		super();
+		this.title = title;
+		this.id =  nbDigitalVideoDiscs++;
 	}
 	public DVD(String title)
 	{

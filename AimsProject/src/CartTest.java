@@ -1,3 +1,5 @@
+
+
 public class CartTest {
 	public static void main(String[] args) {
 		//Tạo giỏ hàng
@@ -17,5 +19,13 @@ public class CartTest {
 		
 		//In thông tin các sản phẩm tỏng giỏ hàng
 		cart.InfoInCart(); 
+		
+		System.out.print('\n');
+		
+		//Tìm sản phẩm theo id
+		System.out.println(cart.FindDVDWithId(0) ? "Tìm thấy sản phẩm" : "Không tìm thấy sản phẩm");
+		
+		//Tìm sản phẩm theo tên
+		System.out.println(cart.FindDVDWithTitle("Aladin") ?  "Tìm thấy sản phẩm" : "Không tìm thấy sản phẩm");
 	}
 }
