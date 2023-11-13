@@ -1,3 +1,4 @@
+
 // Hà Duy Bách 20210093
 public class Cart {
 	//Giới hạn số lượng hàng trong giỏ
@@ -11,7 +12,7 @@ public class Cart {
 	private int qtyOrdered = 0;
 	
 	//thêm DVD vào giỏ hàng
-	public void AddDVD(DVD disc)
+	public boolean AddDVD(DVD disc)
 	{
 		if (qtyOrdered < MAX_NUMBERS_ORDERED) 
 		{
@@ -21,8 +22,25 @@ public class Cart {
 		else
 		{
 			System.out.print("Giỏ hàng đã đầy \n");
-			return;
+			return false;
 		}
+		return true;
+	}
+	
+	//quá tải phương thức bằng tham số loại khác
+	public boolean AddDVD(DVD[] dvdList)
+	{
+		for (int i = 0; i< dvdList.length; i++)
+		{
+			if (!AddDVD(dvdList[i])) return false;
+		}
+		return true;
+	}
+	
+	//quá tải phương thức Add bằng số lượng tham số đầu vào
+	public boolean AddDVD(DVD dvd1, DVD dvd2)
+	{
+		return (AddDVD(dvd1) || AddDVD(dvd2));
 	}
 	
 	//Xóa DVD khỏi giỏ hàng
@@ -56,11 +74,38 @@ public class Cart {
 	//In ra số lượng và thông tin các sản phẩm trong giỏ hàng
 	public void InfoInCart()
 	{
-		System.out.print("Tổng sản phẩm có trong giỏ hàng: " + qtyOrdered + " .Gồm: \n");
+		System.out.print("***********************CART***********************\n"
+				+ "Ordered Items:\n");
 		for (int i = 0; i<qtyOrdered; i ++)
 		{
 			System.out.print(itemsOrdered[i].Info() + '\n');
 		}
+		System.out.print("Total cost " + TotalCost() + '\n');
 	}
 	
+	//Tìm kiếm DVD theo id
+	public boolean FindDVDWithId(int id)
+	{
+		for (int i = 0; i<qtyOrdered; i++)
+		{
+			if (itemsOrdered[i].getId() == id)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	//Tìm kiếm DVD theo tiêu đề
+	public boolean FindDVDWithTitle(String tile)
+	{
+		for (int i = 0; i<qtyOrdered; i++)
+		{
+			if (itemsOrdered[i].getTitle().matches(tile))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
 }
