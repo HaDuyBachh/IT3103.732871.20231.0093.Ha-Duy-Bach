@@ -1,3 +1,4 @@
+package hust.soict.dsai.aims.disc.DigitalVideoDisc;
 // Hà Duy Bách 20210093
 public class DVD {
 	
@@ -23,11 +24,6 @@ public class DVD {
 		super();
 		this.title = title;
 		this.id =  nbDigitalVideoDiscs++;
-	}
-	public DVD(String title)
-	{
-		super();
-		this.title = title;
 	}
 
 	private String title = null;
