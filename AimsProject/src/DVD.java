@@ -16,14 +16,29 @@ public class DVD {
 		this.category = category;
 		this.cost = cost;
 	}
+	public DVD(String title)
+	{
+		super();
+		this.title = title;
+	}
 
 	private String title = null;
 	private String category = null;
 	private String director = null;
 	private int length = -1;
 	private float cost = -1;
+	private long id;
+	private static long nbDigitalVideoDiscs = 0;
 	
 	//Các biến Getter & Setter
+	public long getId()
+	{
+		return id;
+	}
+	public void setTitle(String title)
+	{
+		this.title = title;
+	}
 	public String getTitle() {
 		return title;
 	}
@@ -43,11 +58,11 @@ public class DVD {
 	//Thông tin của DVD
 	public String Info()
 	{
-		return ((title == null) ? "" :"Tiêu đề: " + title + " |") +
-		((category == null) ? "" : "Thể loại: " + category + " |") + 
-		((director == null) ? "" : "Tác giả: " + director + '|') +
-		((length == -1) ? "" : "Thời lượng " + length + " |") +
-		((cost == -1) ? "" : "Giá: " + cost);	
+		return ((title == null) ? "" :"Tiêu đề: " + title + " - ") +
+		((category == null) ? "" : "Thể loại: " + category + " - ") + 
+		((director == null) ? "" : "Tác giả: " + director + " - ") +
+		((length == -1) ? "" : "Thời lượng " + length + " - ") +
+		((cost == -1) ? "" : "Giá: " + cost + "$");	
 	}
 	
 }
