@@ -9,12 +9,20 @@ public class DVD {
 		this.director = director;
 		this.length = length;
 		this.cost = cost;
+		this.id =  nbDigitalVideoDiscs++;
 	}
 	public DVD(String title, String category, float cost) {
 		super();
 		this.title = title;
 		this.category = category;
 		this.cost = cost;
+		this.id =  nbDigitalVideoDiscs++;
+	}
+	public DVD(String title)
+	{
+		super();
+		this.title = title;
+		this.id =  nbDigitalVideoDiscs++;
 	}
 
 	private String title = null;
@@ -22,8 +30,18 @@ public class DVD {
 	private String director = null;
 	private int length = -1;
 	private float cost = -1;
+	private long id;
+	private static long nbDigitalVideoDiscs = 0;
 	
 	//Các biến Getter & Setter
+	public long getId()
+	{
+		return id;
+	}
+	public void setTitle(String title)
+	{
+		this.title = title;
+	}
 	public String getTitle() {
 		return title;
 	}
@@ -43,11 +61,11 @@ public class DVD {
 	//Thông tin của DVD
 	public String Info()
 	{
-		return ((title == null) ? "" :"Tiêu đề: " + title + " |") +
-		((category == null) ? "" : "Thể loại: " + category + " |") + 
-		((director == null) ? "" : "Tác giả: " + director + '|') +
-		((length == -1) ? "" : "Thời lượng " + length + " |") +
-		((cost == -1) ? "" : "Giá: " + cost);	
+		return ((title == null) ? "" :"Tiêu đề: " + title + " - ") +
+		((category == null) ? "" : "Thể loại: " + category + " - ") + 
+		((director == null) ? "" : "Tác giả: " + director + " - ") +
+		((length == -1) ? "" : "Thời lượng " + length + " - ") +
+		((cost == -1) ? "" : "Giá: " + cost + "$");	
 	}
 	
 }
