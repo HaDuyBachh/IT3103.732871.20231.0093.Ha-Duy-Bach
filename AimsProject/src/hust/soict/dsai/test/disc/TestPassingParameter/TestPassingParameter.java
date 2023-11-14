@@ -35,7 +35,7 @@ public class TestPassingParameter {
 	public static void swapDVD(DVD dvd1, DVD dvd2)
 	{
 		DVD dvd_t = new DVD(dvd1.getTitle(),dvd1.getCategory(),dvd1.getDirector(),dvd1.getLenght(),dvd1.getCost());
-		dvd1 = new DVD(dvd2.getTitle(),dvd2.getCategory(),dvd2.getDirector(),dvd2.getLenght(),dvd2.getCost());
-		dvd2 = new DVD(dvd_t.getTitle(),dvd_t.getCategory(),dvd_t.getDirector(),dvd_t.getLenght(),dvd_t.getCost());
+		dvd1.setDVD(dvd2.getTitle(),dvd2.getCategory(),dvd2.getDirector(),dvd2.getLenght(),dvd2.getCost());
+		dvd2.setDVD(dvd_t.getTitle(),dvd_t.getCategory(),dvd_t.getDirector(),dvd_t.getLenght(),dvd_t.getCost());
 	}
 }

@@ -25,6 +25,14 @@ public class DVD {
 		this.title = title;
 		this.id =  nbDigitalVideoDiscs++;
 	}
+	
+	public void setDVD(String title, String category, String director, int length, float cost) {
+		this.title = title;
+		this.category = category;
+		this.director = director;
+		this.length = length;
+		this.cost = cost;
+	}
 
 	private String title = null;
 	private String category = null;
