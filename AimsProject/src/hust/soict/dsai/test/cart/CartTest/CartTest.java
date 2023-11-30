@@ -20,14 +20,16 @@ public class CartTest {
 		cart.AddDVD(dvd3);
 		
 		//In thông tin các sản phẩm trong giỏ hàng
-		cart.InfoInCart(); 
+		//cart.InfoInCart(); 
 		
-		System.out.print('\n');
+		//System.out.print('\n');
 		
 		//Tìm sản phẩm theo id
 		System.out.println(cart.FindDVDWithId(0) ? "Tìm thấy sản phẩm" : "Không tìm thấy sản phẩm");
 		
 		//Tìm sản phẩm theo tên
 		System.out.println(cart.FindDVDWithTitle("Aladin") ?  "Tìm thấy sản phẩm" : "Không tìm thấy sản phẩm");
+		
+		System.out.println(cart.FindDVDWithTitle("Aradin") ?  "Tìm thấy sản phẩm" : "Không tìm thấy sản phẩm");
 	}
 }
