@@ -30,7 +30,7 @@ public abstract class Media {
 		this.cost = cost;
 	}
 	public Media() {
-		// TODO Auto-generated constructor stub
+		super();
 	}
 	
 	
