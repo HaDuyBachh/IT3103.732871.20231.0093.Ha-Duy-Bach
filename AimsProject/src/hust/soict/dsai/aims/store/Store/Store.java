@@ -1,5 +1,5 @@
 package hust.soict.dsai.aims.store.Store;
-import hust.soict.dsai.aims.disc.DigitalVideoDisc.DVD;
+import hust.soict.dsai.aims.media.DVD;
 
 public class Store {
 	public DVD[] itemsInStore;

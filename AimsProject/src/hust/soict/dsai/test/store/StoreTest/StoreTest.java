@@ -1,5 +1,5 @@
 package hust.soict.dsai.test.store.StoreTest;
-import hust.soict.dsai.aims.disc.DigitalVideoDisc.DVD;
+import hust.soict.dsai.aims.media.DVD;
 import hust.soict.dsai.aims.store.Store.Store;
 
 public class StoreTest {
