@@ -1,5 +1,5 @@
 package hust.soict.dsai.aims.cart.Cart;
-import hust.soict.dsai.aims.disc.DigitalVideoDisc.DVD;
+import hust.soict.dsai.aims.media.DVD;
 
 // Hà Duy Bách 20210093
 public class Cart {
