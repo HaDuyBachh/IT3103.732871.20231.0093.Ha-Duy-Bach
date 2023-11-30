@@ -1,6 +1,6 @@
 package hust.soict.dsai.aims.media;
 
-public abstract class Media {
+public abstract class Media{
 	private long id;
 	private String title;
 	private String category;
@@ -34,5 +34,18 @@ public abstract class Media {
 	}
 	
 	public abstract String Info();
+	
+	@Override
+    public boolean equals(Object obj)
+    {
+		if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof Media)) {
+            return false;
+        }
+		Media otherMedia = (Media)obj;
+		return otherMedia.getTitle() == getTitle();
+    }
 
 }
