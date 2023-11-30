@@ -33,6 +33,6 @@ public abstract class Media {
 		super();
 	}
 	
-	
+	public abstract String Info();
 
 }

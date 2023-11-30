@@ -34,8 +34,8 @@ public class TestPassingParameter {
 	//Phương thức swap thật sự
 	public static void swapDVD(DVD dvd1, DVD dvd2)
 	{
-		DVD dvd_t = new DVD(dvd1.getTitle(),dvd1.getCategory(),dvd1.getDirector(),dvd1.getLenght(),dvd1.getCost());
-		dvd1.setDVD(dvd2.getTitle(),dvd2.getCategory(),dvd2.getDirector(),dvd2.getLenght(),dvd2.getCost());
-		dvd2.setDVD(dvd_t.getTitle(),dvd_t.getCategory(),dvd_t.getDirector(),dvd_t.getLenght(),dvd_t.getCost());
+		DVD dvd_t = new DVD(dvd1.getTitle(),dvd1.getCategory(),dvd1.getDirector(),dvd1.getLength(),dvd1.getCost());
+		dvd1.setDVD(dvd2.getTitle(),dvd2.getCategory(),dvd2.getDirector(),dvd2.getLength(),dvd2.getCost());
+		dvd2.setDVD(dvd_t.getTitle(),dvd_t.getCategory(),dvd_t.getDirector(),dvd_t.getLength(),dvd_t.getCost());
 	}
 }

@@ -1,39 +1,30 @@
 package hust.soict.dsai.aims.store.Store;
-import hust.soict.dsai.aims.media.DVD;
+import java.util.ArrayList;
+
+import hust.soict.dsai.aims.media.Media;
 
 public class Store {
-	public DVD[] itemsInStore;
-	public int maxNumberOrdered;
-	public int qtyOrdered;
-	//khởi tạo cửa hàng vào số lượng item tối đa
-	public Store(int maxNumberOrdered)
+	private ArrayList<Media> itemInStore = new ArrayList<Media>();
+			
+	//khởi tạo cửa hàng
+	public Store()
 	{
 		super();
-		this.maxNumberOrdered = maxNumberOrdered;
-		itemsInStore = new DVD[maxNumberOrdered];
 	}
 	
-	//Thêm DVD vào Store
-	public void AddDVD(DVD dvd)
+	//Thêm sản phẩm vào giỏ hàng
+	public boolean addMedia(Media media)
 	{
-		itemsInStore[qtyOrdered++] = dvd;
-		System.out.print("Thêm thành công DVD có id " + dvd.getId() +" vào giỏ hàng \n");
-	} 
+		if (itemInStore.contains(media)) return false;
+		itemInStore.add(media);
+		return true;
+	}
 	
-	//Xóa DVD khỏi Store
-	public void RemoveDVD(DVD disc)
+	//Xóa sản phẩm khỏi giỏ hàng
+	public boolean removeMedia(Media media)
 	{
-		int newQtyOrdered = 0;
-		for (int i = 0; i<qtyOrdered; i++)
-		{
-			if (disc != itemsInStore[i])
-			{
-				itemsInStore[newQtyOrdered++] = itemsInStore[i];
-			}
-		}
-			
-		System.out.print("Đã xóa " + (qtyOrdered - newQtyOrdered) + " đối tượng ra khỏi giỏ hàng \n");
-			
-		qtyOrdered = newQtyOrdered;
+		if (!itemInStore.contains(media)) return false;
+		itemInStore.remove(media);
+		return true;	
 	}
 }

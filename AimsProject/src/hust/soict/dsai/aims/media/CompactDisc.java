@@ -63,4 +63,10 @@ public class CompactDisc extends Media implements Playable {
 			System.out.println("DVD length: " + track.getLength());
 		}
 	}
+
+	@Override
+	public String Info() {
+		// TODO Auto-generated method stub
+		return "";
+	}
 }

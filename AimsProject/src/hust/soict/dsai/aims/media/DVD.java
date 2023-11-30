@@ -38,6 +38,7 @@ public class DVD extends Disc implements Playable {
 	private static long nbDigitalVideoDiscs = 0;
 
 	//Thông tin của DVD
+	@Override
 	public String Info()
 	{
 		return ((getTitle() == null) ? "" :"Tiêu đề: " + getTitle() + " - ") +

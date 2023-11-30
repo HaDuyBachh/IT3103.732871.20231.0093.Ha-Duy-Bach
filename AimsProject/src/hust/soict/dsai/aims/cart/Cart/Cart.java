@@ -1,74 +1,35 @@
 package hust.soict.dsai.aims.cart.Cart;
-import hust.soict.dsai.aims.media.DVD;
+import java.util.ArrayList;
+
+import hust.soict.dsai.aims.media.Media;
 
 // Hà Duy Bách 20210093
 public class Cart {
-	//Giới hạn số lượng hàng trong giỏ
-	public static final int MAX_NUMBERS_ORDERED = 20;
+	private ArrayList<Media> itemsOrder = new ArrayList<Media>();
 	
-	//Khởi tạo giỏ hàng mới
-	private DVD itemsOrdered[] =
-			new DVD[MAX_NUMBERS_ORDERED];
-	
-	//Số lượng hàng trong giỏ
-	private int qtyOrdered = 0;
-	
-	//thêm DVD vào giỏ hàng
-	public boolean AddDVD(DVD disc)
+	//Thêm sản phẩm vào giỏ hàng
+	public boolean addMedia(Media media)
 	{
-		if (qtyOrdered < MAX_NUMBERS_ORDERED) 
-		{
-			itemsOrdered[qtyOrdered++] = disc;
-			if (qtyOrdered + 3 > MAX_NUMBERS_ORDERED) System.out.print("Giỏ hàng đã gần đầy \n");
-		}
-		else
-		{
-			System.out.print("Giỏ hàng đã đầy \n");
-			return false;
-		}
+		if (itemsOrder.contains(media)) return false;
+		itemsOrder.add(media);
 		return true;
 	}
 	
-	//quá tải phương thức bằng tham số loại khác
-	public boolean AddDVD(DVD[] dvdList)
+	//Xóa sản phẩm khỏi giỏ hàng
+	public boolean removeMedia(Media media)
 	{
-		for (int i = 0; i< dvdList.length; i++)
-		{
-			if (!AddDVD(dvdList[i])) return false;
-		}
-		return true;
-	}
-	
-	//quá tải phương thức Add bằng số lượng tham số đầu vào
-	public boolean AddDVD(DVD dvd1, DVD dvd2)
-	{
-		return (AddDVD(dvd1) || AddDVD(dvd2));
-	}
-	
-	//Xóa DVD khỏi giỏ hàng
-	public void RemoveDVD(DVD disc)
-	{
-		int newQtyOrdered = 0;
-		for (int i = 0; i<qtyOrdered; i++)
-		{
-			if (disc != itemsOrdered[i])
-			{
-				itemsOrdered[newQtyOrdered++] = itemsOrdered[i];
-			}
-		}
-		
-		System.out.print("Đã xóa " + (qtyOrdered - newQtyOrdered) + " đối tượng ra khỏi giỏ hàng \n");
-		
-		qtyOrdered = newQtyOrdered;
+		if (!itemsOrder.contains(media)) return false;
+		itemsOrder.remove(media);
+		return true;	
 	}
 	
 	//Tổng số tiền trong giỏ hàng
 	public float TotalCost()
 	{
 		float sum = 0;
-		for(int i = 0; i<qtyOrdered; i++)
+		for(Media media : itemsOrder)
 		{
-			sum += itemsOrdered[i].getCost();
+			sum += media.getCost();
 		}
 		return sum;
 	}
@@ -78,36 +39,12 @@ public class Cart {
 	{
 		System.out.print("***********************CART***********************\n"
 				+ "Ordered Items:\n");
-		for (int i = 0; i<qtyOrdered; i ++)
+		for(Media media : itemsOrder)
 		{
-			System.out.print(itemsOrdered[i].Info() + '\n');
+			System.out.print(media.Info() + '\n');
 		}
 		System.out.print("Total cost " + TotalCost() + '\n');
 	}
 	
-	//Tìm kiếm DVD theo id
-	public boolean FindDVDWithId(int id)
-	{
-		for (int i = 0; i<qtyOrdered; i++)
-		{
-			if (itemsOrdered[i].getId() == id)
-			{
-				return true;
-			}
-		}
-		return false;
-	}
 	
-	//Tìm kiếm DVD theo tiêu đề
-	public boolean FindDVDWithTitle(String tile)
-	{
-		for (int i = 0; i<qtyOrdered; i++)
-		{
-			if (itemsOrdered[i].getTitle().matches(tile))
-			{
-				return true;
-			}
-		}
-		return false;
-	}
 }
