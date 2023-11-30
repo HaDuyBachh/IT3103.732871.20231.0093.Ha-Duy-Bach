@@ -3,12 +3,13 @@ package hust.soict.dsai.aims.media;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Book {
+public class Book extends Media {
 	private List<String> authors = new ArrayList<String>();
 	
-	public Book()
+	public Book(String title, String category, float cost, List<String> authors)
 	{
-		super();
+		super(title, category, cost);
+		setAuthors(authors);
 	}
 	
 	//Getter & Setter
@@ -34,6 +35,20 @@ public class Book {
 		if (!authors.contains(au)) return false;
 		authors.remove(au);
 		return true;
+	}
+
+	@Override
+	public String Info() {
+		String s = ((getTitle() == null) ? "" :"Tiêu đề: " + getTitle() + " - ") +
+		((getCategory() == null) ? "" : "Thể loại: " + getCategory() + " - ") + 
+		((getCost() == -1) ? "" : "Giá: " + getCost() + "$ - Các Tác giả: ");	
+		
+		for (String author : authors)
+		{
+			s += author + ", ";
+		}
+		
+		return s;
 	}
 	
 }

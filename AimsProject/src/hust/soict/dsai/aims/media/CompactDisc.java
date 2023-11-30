@@ -25,8 +25,9 @@ public class CompactDisc extends Media implements Playable {
 		this.tracks = tracks;
 	}
 
-	public CompactDisc() {
-		super();
+	public CompactDisc(String title, String category, float cost, List<Track> track) {
+		super(title, category, cost);
+		setTracks(track);
 	}
 	
 	//thêm track vào đĩa
@@ -66,7 +67,15 @@ public class CompactDisc extends Media implements Playable {
 
 	@Override
 	public String Info() {
-		// TODO Auto-generated method stub
-		return "";
+		String s = ((getTitle() == null) ? "" :"Tiêu đề: " + getTitle() + " - ") +
+				((getCategory() == null) ? "" : "Thể loại: " + getCategory() + " - ") + 
+				((getLength() == -1) ? "" : "Thời lượng " + getLength() + " - ") +
+				((getCost() == -1) ? "" : "Giá: " + getCost() + "$ - Bao gồm các bản nhạc:\n");
+		for (Track track : tracks)
+		{
+			s += track.getTitle() + ", ";
+		}
+		
+		return s;
 	}
 }
