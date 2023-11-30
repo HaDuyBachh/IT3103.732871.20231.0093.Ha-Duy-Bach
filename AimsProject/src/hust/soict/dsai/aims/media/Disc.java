@@ -26,4 +26,10 @@ public class Disc extends Media {
 		
 	}
 
+	@Override
+	public String Info() {
+		// TODO Auto-generated method stub
+		return "";
+	}
+
 }
