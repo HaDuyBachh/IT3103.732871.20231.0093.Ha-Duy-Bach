@@ -5,25 +5,16 @@ public class DVD extends Disc implements Playable {
 	
 	//Khởi tạo DVD
 	public DVD(String title, String category, String director, int length, float cost) {
-		super();
-		setTitle(title);
-		setCategory(category);
-		setDirector(director);
-		setLength(length);
-		setCost(cost);
+		super(title, category, director, length, cost);
 		setId(nbDigitalVideoDiscs++);
 	}
 	public DVD(String title, String category, float cost) {
-		super();
-		setTitle(title);
-		setCategory(category);
-		setCost(cost);
+		super(category, category, category, 0, cost);
 		setId(nbDigitalVideoDiscs++);
 	}
 	public DVD(String title)
 	{
-		super();
-		setTitle(title);
+		super(title, "", "", 0, 0);
 		setId(nbDigitalVideoDiscs++);
 	}
 	

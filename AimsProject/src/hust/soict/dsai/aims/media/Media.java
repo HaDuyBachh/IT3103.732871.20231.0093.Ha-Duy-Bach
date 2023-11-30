@@ -29,10 +29,16 @@ public abstract class Media{
 	public void setCost(float cost) {
 		this.cost = cost;
 	}
-	public Media() {
+	
+	public Media(String title, String category, float cost) 
+	{
 		super();
+		setTitle(title);
+		setCategory(category);
+		setCost(cost);
 	}
 	
+	//In ra thông tin sản phẩm
 	public abstract String Info();
 	
 	@Override

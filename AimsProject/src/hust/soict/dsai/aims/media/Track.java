@@ -20,8 +20,10 @@ public class Track implements Playable {
 		this.length = length;
 	}
 
-	public Track() {
-		// TODO Auto-generated constructor stub
+	public Track(String title, int length) {
+		super();
+		setTitle(title);
+		setLength(length);
 	}
 
 	@Override
@@ -42,5 +44,4 @@ public class Track implements Playable {
         Track otherTrack = (Track)obj;
 		return otherTrack.getTitle() == getTitle() && otherTrack.getLength() == getLength();
     }
-
 }
