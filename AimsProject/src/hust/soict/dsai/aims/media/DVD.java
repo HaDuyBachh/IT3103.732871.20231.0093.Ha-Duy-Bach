@@ -1,7 +1,7 @@
 package hust.soict.dsai.aims.media;
 
 // Hà Duy Bách 20210093
-public class DVD extends Disc {
+public class DVD extends Disc implements Playable {
 	
 	//Khởi tạo DVD
 	public DVD(String title, String category, String director, int length, float cost) {
@@ -45,6 +45,12 @@ public class DVD extends Disc {
 		((getDirector() == null) ? "" : "Tác giả: " + getDirector() + " - ") +
 		((getLength() == -1) ? "" : "Thời lượng " + getLength() + " - ") +
 		((getCost() == -1) ? "" : "Giá: " + getCost() + "$");	
+	}
+	
+	@Override
+	public void Play() {
+		System.out.println("Playing DVD: " + this.getTitle());
+		System.out.println("DVD length: " + this.getLength());
 	}
 	
 }
