@@ -27,15 +27,18 @@ public class Aims {
 		au.add("Athur");
 		au.add("Ghether");
 		Book book = new Book("NeverLand", "Gim", 100, au);
+		Book book2 = new Book("NeverLand", "Gim",110,au);
 		
-		media.add(cd);
-		media.add(dvd);
-		media.add(book);
+		System.out.print(Book.COMPARE_BY_TITLE_COST.compare(book, book2));
 		
-		for (Media m : media)
-		{
-			System.out.println(m.Info());
-			System.out.println("--------------------------------------------------");
-		}
+//		media.add(cd);
+//		media.add(dvd);
+//		media.add(book);
+//		
+//		for (Media m : media)
+//		{
+//			System.out.println(m.Info());
+//			System.out.println("--------------------------------------------------");
+//		}
 	}
 }
