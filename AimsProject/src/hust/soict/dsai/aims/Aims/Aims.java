@@ -364,6 +364,7 @@ public class Aims {
 	public static void placeOrder()
 	{
 		System.out.println("Đặt hàng thành công");
+		optionStack.pop();
 	}
 
 }
