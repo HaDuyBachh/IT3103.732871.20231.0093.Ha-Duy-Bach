@@ -36,5 +36,4 @@ public class Disc extends Media {
 				((getCost() == -1) ? "" : "Giá: " + getCost() + "$");
 		return s;
 	}
-
 }

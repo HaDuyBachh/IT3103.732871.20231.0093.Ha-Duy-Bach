@@ -27,4 +27,13 @@ public class Store {
 		itemInStore.remove(media);
 		return true;	
 	}
+	
+	public Media findByTitle(String s)
+	{
+		for (Media media : itemInStore) {
+			if (media.getTitle().equals(s)) return media;
+		}
+		
+		return null;
+	}
 }

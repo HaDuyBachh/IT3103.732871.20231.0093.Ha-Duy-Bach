@@ -6,7 +6,7 @@ public abstract class Media{
 	
 	public static final Comparator<Media> COMPARE_BY_TITLE_COST = new MediaComparatorByTitleCost();
 	public static final Comparator<Media> COMPARE_BY_COST_TITLE = new MediaComparatorByCostTitle();
-	
+	private static long nbMedia = 0;
 	private long id;
 	private String title;
 	private String category;
@@ -14,7 +14,8 @@ public abstract class Media{
 	public long getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(long id)
+	{
 		this.id = id;
 	}
 	public String getTitle() {
@@ -42,8 +43,9 @@ public abstract class Media{
 		setTitle(title);
 		setCategory(category);
 		setCost(cost);
+		setId(++nbMedia);
 	}
-	
+
 	//In ra thông tin sản phẩm
 	public abstract String Info();
 	
