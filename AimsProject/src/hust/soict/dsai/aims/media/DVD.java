@@ -1,5 +1,9 @@
 package hust.soict.dsai.aims.media;
 
+import javax.swing.JOptionPane;
+
+import hust.soict.dsai.aims.exception.PlayerException;
+
 // Hà Duy Bách 20210093
 public class DVD extends Disc implements Playable {
 	
@@ -37,9 +41,21 @@ public class DVD extends Disc implements Playable {
 	}
 	
 	@Override
-	public void Play() {
-		System.out.println("Playing DVD: " + this.getTitle());
-		System.out.println("DVD length: " + this.getLength());
+	public void Play() throws PlayerException {
+		if (getLength() <= 0) {
+			throw new PlayerException("ERROR: DVD length is non-positive!");
+		} else {
+			StringBuilder sb = new StringBuilder();
+			sb.append("Playing DVD: " + this.getTitle() + "\n");
+			sb.append("DVD length: " + this.getLength() + "\n");
+			JOptionPane.showMessageDialog(null, sb.toString(), "Play DVD", JOptionPane.INFORMATION_MESSAGE);
+		}
+	}
+	
+	@Override
+	public String toString() {
+		return String.format("DVD - %s - %s - %s - %dm. : %.2f $", getTitle(), getCategory(), getDirector(), getLength(), getCost())
+				.replaceAll(" null | 0 ", " Unknown ");
 	}
 	
 }

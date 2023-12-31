@@ -52,14 +52,35 @@ public abstract class Media{
 	@Override
     public boolean equals(Object obj)
     {
-		if (this == obj) {
-            return true;
-        }
-        if (!(obj instanceof Media)) {
-            return false;
-        }
+		try 
+		{
+			if (this == obj) {
+	            return true;
+	        }
+	        if (!(obj instanceof Media)) {
+	            return false;
+	        }
+			
+		}
+		catch (NullPointerException e)
+		{
+			e.printStackTrace();
+		} catch (ClassCastException e)
+		{
+			e.printStackTrace();
+		}
+		
 		Media otherMedia = (Media)obj;
 		return otherMedia.getTitle() == getTitle();
+		
     }
 
+	public boolean isMatch(String title) {
+		String[] keywords = title.split("\\s+");
+		for (String word : keywords) {
+			if (this.title.toLowerCase().contains(word.toLowerCase()))
+				return true;
+		}
+		return false;
+	}
 }

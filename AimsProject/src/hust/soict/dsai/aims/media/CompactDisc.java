@@ -3,6 +3,10 @@ package hust.soict.dsai.aims.media;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
+import hust.soict.dsai.aims.exception.PlayerException;
+
 public class CompactDisc extends Media implements Playable {
 
 	private String artist;
@@ -28,6 +32,11 @@ public class CompactDisc extends Media implements Playable {
 	public CompactDisc(String title, String category, float cost, List<Track> track) {
 		super(title, category, cost);
 		setTracks(track);
+	}
+	
+	public CompactDisc(String title, String category, String artist,  float cost) {
+		super(title, category, cost);
+		this.artist = artist;
 	}
 	
 	//thêm track vào đĩa
@@ -57,11 +66,19 @@ public class CompactDisc extends Media implements Playable {
 	}
 
 	@Override
-	public void Play() {
-		for (Track track : tracks)
-		{
-			System.out.println("Playing DVD: " + track.getTitle());
-			System.out.println("DVD length: " + track.getLength());
+	public void Play() throws PlayerException {
+		StringBuilder sb = new StringBuilder();
+
+		if (getLength() <= 0) {
+			throw new PlayerException("ERROR: CD length is non-positive!");
+		} else {
+			sb.append("Playing CD: " + this.getTitle() + (this.getArtist().equals("") ? "" : " by " + this.getArtist())
+					+ "\n");
+			sb.append("CD total length: " + this.getLength() + "\n");
+			JOptionPane.showMessageDialog(null, sb.toString(), "Play CD", JOptionPane.INFORMATION_MESSAGE);
+			for (Track t : tracks) {
+				t.Play();
+			}
 		}
 	}
 
@@ -77,5 +94,11 @@ public class CompactDisc extends Media implements Playable {
 		}
 		
 		return s;
+	}
+	
+	@Override
+	public String toString() {
+		return String.format("CD - %s - %s - %s - %dm. : %.2f $", getTitle(), getCategory(), artist, getLength(), getCost())
+				.replaceAll(" null | 0 ", " Unknown ");
 	}
 }
