@@ -3,13 +3,14 @@ import java.util.ArrayList;
 
 import hust.soict.dsai.aims.media.Media;
 import hust.soict.dsai.aims.media.MediaComparatorByCostTitle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 // Hà Duy Bách 20210093
 public class Cart {
-	private ArrayList<Media> itemsOrder = new ArrayList<Media>();
+	private ObservableList<Media>  itemsOrder = FXCollections.observableArrayList();	
 	
-	public ArrayList<Media> getItemsOrder()
-	{
+	public ObservableList<Media> getItemsOrder() {
 		return itemsOrder;
 	}
 	
@@ -71,6 +72,10 @@ public class Cart {
 	public void SortByTitle()
 	{
 		itemsOrder.sort(Media.COMPARE_BY_TITLE_COST);
+	}
+
+	public void PlaceOrder() {
+		itemsOrder.clear();
 	}
 	
 }

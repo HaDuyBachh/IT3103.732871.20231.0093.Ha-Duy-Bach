@@ -12,6 +12,11 @@ public class Book extends Media {
 		setAuthors(authors);
 	}
 	
+	public Book(String title, String category, float cost)
+	{
+		super(title, category, cost);
+	}
+	
 	//Getter & Setter
 	public List<String> getAuthors() {
 		return authors;
@@ -49,6 +54,14 @@ public class Book extends Media {
 		}
 		
 		return s;
+	}
+	
+	@Override
+	public String toString() {
+		return String
+				.format("Book - %s - %s - %s : %.2f $", getTitle(), getCategory(),
+						authors.isEmpty() ? "Unknown" : String.join(", ", authors), getCost())
+				.replaceAll(" null | 0 ", " Unknown ");
 	}
 	
 }

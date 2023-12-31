@@ -1,5 +1,9 @@
 package hust.soict.dsai.aims.media;
 
+import javax.swing.JOptionPane;
+
+import hust.soict.dsai.aims.exception.PlayerException;
+
 public class Track implements Playable {
 	private String title;
 	private int length;
@@ -27,9 +31,16 @@ public class Track implements Playable {
 	}
 
 	@Override
-	public void Play() {
-		System.out.println("Playing DVD: " + this.getTitle());
-		System.out.println("DVD length: " + this.getLength());
+	public void Play() throws PlayerException {
+		
+		if (length<=0) {
+			throw new PlayerException("ERROR: Track length is non-positive!");
+		}
+		
+		StringBuilder sb = new StringBuilder();
+		sb.append("Playing track: " + this.getTitle() + "\n");
+		sb.append("Track length: " + this.getLength() + "\n");
+		JOptionPane.showMessageDialog(null, sb.toString(), "Play track", JOptionPane.INFORMATION_MESSAGE);
 	}
 	
 	@Override

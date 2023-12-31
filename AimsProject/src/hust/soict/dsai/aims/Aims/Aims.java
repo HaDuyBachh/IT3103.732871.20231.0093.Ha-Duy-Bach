@@ -6,17 +6,23 @@ import java.util.Scanner;
 import java.util.Stack;
 
 import hust.soict.dsai.aims.cart.Cart.Cart;
+import hust.soict.dsai.aims.exception.PlayerException;
 import hust.soict.dsai.aims.media.Book;
 import hust.soict.dsai.aims.media.CompactDisc;
 import hust.soict.dsai.aims.media.DVD;
 import hust.soict.dsai.aims.media.Media;
 import hust.soict.dsai.aims.media.Track;
+import hust.soict.dsai.aims.screen.CartScreen;
+import hust.soict.dsai.aims.screen.StoreScreen;
 import hust.soict.dsai.aims.store.Store.Store;
 
 // Hà Duy Bách 20210093
 public class Aims {
 	static Scanner scanner = new Scanner(System.in);
-	static Cart current_cart = new Cart();
+	private static Cart current_cart = new Cart();
+	private static StoreScreen storeScreen;
+	private static CartScreen cartScreen;
+	
 	static Store store = new Store(); 
 	
 	enum Option {
@@ -44,6 +50,13 @@ public class Aims {
 		
 		CompactDisc cd = new CompactDisc("album chill", "Music chill", 100, tracks);
 		DVD dvd = new DVD("Life Of Human", "Romantic", "Even Jams", 120, 60);
+		DVD dvd1 = new DVD("Life Of Human1", "Romantic", "Even Jams", 120, 60);
+		DVD dvd2 = new DVD("Life Of Human2", "Romantic", "Even Jams", 120, 60);
+		DVD dvd3 = new DVD("Life Of Human3", "Romantic", "Even Jams", 120, 60);
+		DVD dvd4 = new DVD("Life Of Human4", "Romantic", "Even Jams", 120, 60);
+		DVD dvd5 = new DVD("Life Of Human5", "Romantic", "Even Jams", 120, 60);
+		DVD dvd6 = new DVD("Life Of Human6", "Romantic", "Even Jams", 120, 60);
+		DVD dvd7 = new DVD("Life Of Human7", "Romantic", "Even Jams", 120, 60);
 		
 		List<String> au = new ArrayList<String>();
 		au.add("Athur");
@@ -53,36 +66,86 @@ public class Aims {
 		store.addMedia(book);
 		store.addMedia(cd);
 		store.addMedia(dvd);
+		store.addMedia(dvd1);
+		store.addMedia(dvd2);
+		store.addMedia(dvd3);
+		store.addMedia(dvd4);
+		store.addMedia(dvd5);
+		store.addMedia(dvd6);
+		store.addMedia(dvd7);
+		
+		
+//		new StoreScreen(store);
+		
+		openStoreScreen();
 	}
 	
 	public static void main(String[] args)
 	{
 		initStore();
-		optionStack.push(Option.showMenu);
 		
-		while (optionStack.size() > 0)
-		{
-			switch (optionStack.peek())
-			{
-				case showMenu: showMenu(); break;
-				case cartMenu: cartMenu(); break;
-				case mediaDetailsMenu: mediaDetailsMenu(0); break;
-				case storeMenu: storeMenu(); break;
-				case playMedia: mediaDetailsMenu(1); break;
-				case addMediaToCart: mediaDetailsMenu(2); break;
-				case filterMedias: filterMedias(); break;
-				case placeOrder: placeOrder(); break;
-				case playMediaFromCart: playMediaFromCart(); break;
-				case removeMediaFromCart: removeMediaFromCart(); break;
-				case sortMedias: sortMedias(); break;
-				default:
-					System.out.println("Chương trình gặp lỗi mất mát dữ liệu option stack");
-					return;
-			}
-		}
-		
-		System.out.println("Đang thoát chương trình"); return;
+//		optionStack.push(Option.showMenu);
+//		
+//		while (optionStack.size() > 0)
+//		{
+//			switch (optionStack.peek())
+//			{
+//				case showMenu: showMenu(); break;
+//				case cartMenu: cartMenu(); break;
+//				case mediaDetailsMenu: mediaDetailsMenu(0); break;
+//				case storeMenu: storeMenu(); break;
+//				case playMedia: mediaDetailsMenu(1); break;
+//				case addMediaToCart: mediaDetailsMenu(2); break;
+//				case filterMedias: filterMedias(); break;
+//				case placeOrder: placeOrder(); break;
+//				case playMediaFromCart: playMediaFromCart(); break;
+//				case removeMediaFromCart: removeMediaFromCart(); break;
+//				case sortMedias: sortMedias(); break;
+//				default:
+//					System.out.println("Chương trình gặp lỗi mất mát dữ liệu option stack");
+//					return;
+//			}
+//		}
+//		
+//		System.out.println("Đang thoát chương trình"); return;
 	}
+	
+	
+	public static Store getStore() {
+		return store;
+	}
+
+	public static Cart getCart() {
+		return current_cart;
+	}
+
+	public static StoreScreen getStoreScreen() {
+		return storeScreen;
+	}
+
+	public static CartScreen getCartScreen() {
+		return cartScreen;
+	}
+	
+	public static void openStoreScreen() {
+		storeScreen = new StoreScreen(store);
+	}
+	
+	public static void closeStoreScreen() {
+		storeScreen.setVisible(false);
+		storeScreen = null;
+	}
+	
+	public static void openCartScreen() {
+		cartScreen = new CartScreen(current_cart);
+	}
+	
+	public static void closeCartScreen() {
+		cartScreen.setVisible(false);
+		cartScreen = null;
+	}
+	
+	
 	
 	/**
 	 * Xác định xem nhận giá trị nào để đẩy vào optionStack
@@ -196,9 +259,21 @@ public class Aims {
 		//thực hiện các kiểu khác trước
 		if (type == 1)
 		{
-			if (obj instanceof CompactDisc) ((CompactDisc)obj).Play();
+			if (obj instanceof CompactDisc)
+				try {
+					((CompactDisc)obj).Play();
+				} catch (PlayerException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			else
-			if (obj instanceof DVD) ((DVD)obj).Play();
+			if (obj instanceof DVD)
+				try {
+					((DVD)obj).Play();
+				} catch (PlayerException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			else 
 				System.out.println
 				("Không sử dụng được tính năng này do không phải là DVD và CD");
@@ -232,9 +307,21 @@ public class Aims {
 			{
 				case 1: current_cart.addMedia(obj); break;
 				case 2: 
-					if (obj instanceof CompactDisc) ((CompactDisc)obj).Play();
+					if (obj instanceof CompactDisc)
+						try {
+							((CompactDisc)obj).Play();
+						} catch (PlayerException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 					else
-					if (obj instanceof DVD) ((DVD)obj).Play();
+					if (obj instanceof DVD)
+						try {
+							((DVD)obj).Play();
+						} catch (PlayerException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 					else 
 						System.out.println
 						("Không sử dụng được tính năng này do không phải là DVD và CD");
